@@ -3,4 +3,4 @@ addThat = 2
 
 print"Hello World!"
 
-print addThis + addThat
+print addThis * addThat
