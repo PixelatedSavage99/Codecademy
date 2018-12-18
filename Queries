@@ -1,0 +1,103 @@
+Queries : 
+
+Vocab -
+Operators - create a condition that can be evaluated as either true or false.
+
+Syntax - 
+AS - a keyword in SQL that allows you to rename a column or table using an alias.
+DISTINCT - used to return unique vaules in the output.
+WHERE - a clause that filters the result to only include rows where the following condition is true.
+Operators - >(greater than), <(less than), =(equal to), !=(not equal to), >=(greator than or equal to), <=(less than or equal to)
+LIKE - A special operator that can be used with the WHERE clause to search for a pattern.
+'_' - you can substitute any individual character here without breakeing the pattern.
+'%' - a wildcard character that matches zero or more missing letters in the pattern.
+BETWEEN - can be used in a WHERE claused to filter the result set within a certain range.
+AND - operator displays a row if all the conditions are true.
+OR - operator displays a row if any condition is true.
+ORDER BY - sort the results aplhabetically or numerically.
+DESC - a keyword used in ORDER BY to sort the results in descending order
+ASC - a kayeord used in ORDER BY to sort the results in ascending order
+LIMIT - a clause that lets you specify the maximum numbers of rows the result set will have.
+CASE - statement that allows us to create different outputs(usually in the SELECT statement).
+WHEN - tests a condition
+THEN - gives is the string if the condition is true. 
+ElSE - gives is the string if all the above conditions are false.
+END - required at the end of a CASE statement.
+
+Notes -
+
+Core purpose of SQL language is to retrieve info stored in a database.
+
+Queries allow us to communicate with the database by asking questions and having the result set return data relevant to the question.
+
+IBM started out SQL as SEQUEL (Structered English QUEry Language) in the 70's to query databases.
+
+DISTINCT filters out all duplicated vaules in the specific column(s).
+
+Filtering the results of a query is an important skill in SQL.
+
+LIKE is a special operator used with WHERE to search for a specific pattern in a column.
+
+BETWEEN values can be numbers, text, or dates.
+
+BETWEEN two letters is not inclusive of the 2nd letter.
+BETWEEN two numbers is inclusive of the 2nd number.
+
+Can us ORDER BY to sort alphabetically or numerically.
+
+ORDER BY always goes after WHERE (if WHERE is present).
+
+LIMIT saves space on our screen and makes our queries run faster.
+LIMIT always goes at the end of the query and it is not supported in all SQL databases.
+
+CASE is SQL's way of handling if-then logic.
+CASE statement must end with END;
+
+Example Code - 
+AS:
+	SELECT imdb_rating AS 'IMDb' FROM movies;
+
+DISTINCT: 
+	SELECT DISTINCT genre FROM movies;
+
+WHERE:
+	SELECT * FROM movies WHERE year > 2014;
+
+LIKE I:
+	SELECT * FROM movies WHERE name LIKE 'Se_en';
+
+LIKE II:
+	SELECT * FROM movies WHERE name LIKE '%man%'; /* any word that contains the word 'man' will be returned*/
+	SELECT * FROM movies WHERE name LIKE 'The %'; /* any word that begins with the word 'The'
+
+IS NULL:
+	SELECT name FROM movies WHERE imdb_rating IS NULL;
+
+BETWEEN:
+	SELECT * FROM movies WHERE name BETWEEN 'D' AND 'G'; /* from 'D' to, but not inculding 'G'. prints 'D' 'E' 'F'*/
+	SELECT * FROM movies WHERE year BETWEEN 1970 AND 1979; /* gets movies from 1970's*/
+
+AND:
+	SELECT * FROM movies WHERE year < 1985 AND genre = 'horror';
+
+
+OR: 
+	SELECT * FROM movies WHERE genre = 'romance' OR genre = 'comedy';
+
+ORDER BY:
+	SELECT name, year, imdb_rating FROM movies ORDER BY imdb_rating 
+	SELECT name, year, imdb_rating FROM movies ORDER BY imdb_rating DESC;
+	SELECT name, year, imdb_rating FROM movies ORDER BY imdb_rating ASC;
+
+LIMIT:
+	SELECT * FROM movies ORDER BY imdb_rating DESC LIMIT 3;
+
+CASE:
+	SELECT name, 
+		CASE
+  			WHEN genre = 'romance' THEN 'Chill'
+    		WHEN genre = 'comedy' THEN 'Chill'
+    		ELSE 'Intense'
+  		END AS 'Mood'
+	FROM movies;
+

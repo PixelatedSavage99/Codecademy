@@ -1,0 +1,145 @@
+Intro to SQL 
+
+Relational Database Management System :
+
+Vocab - 
+> Database - a set of data stored in a computer
+> Relational Database - a type of database
+> Rekational Database Management System (RDBMS) - a program that allows you to create, update, and administer 	a relational database.
+> SQL(Structered Query Language) - a programming language used to communicate with data stored in a RDBMS.
+> INTEGER - a positive or negative whole number.
+> TEXT - a text string.
+> DATE - the date formatted as YYYY-MM-DD for the year, month, and day.
+> REAL - a decimal value.
+> Statment - text that the database recognizes as a valid command.
+> Clause - preform specific tasks in SQL.
+> Parameter - a list of columns, data types, or values that are passes to a clause as an argument.
+> Constraints - add info about how a column can be used.
+
+
+Syntax - 
+> CREATE TABLE - create a new table. 
+> table_name - refers to the name of the table that the command is applied to.
+> (column_1 data_type, column_2 data_type, column_3 data_type)
+> INSERT - inserts a new row
+> VALUES - clause that indicates the data being inserted.
+> SELECT - used to fetch data from a database.
+> * - allows you to select every column in a table.
+> ALTER TABLE - a clause that lets you make the specified changes.
+> ADD COLUMN - a clause that lets you add a column
+> NULL - a special value in SQL that represents missing or unknown data. 
+> UPDATE - a clause that edits a row in the table.
+> SET - a clause that indicates the column to edit.
+> WHERE - a clause that indicates which row(s) to update.
+> DELETE FROM - a clause that lets you delete rows from a table.
+> IS NULL - a condition in SQL that returns true when the value is NULL and false otherwise.
+> PRIMARY KEY - columns can be used to uniquely identify the row.
+> UNIQUE - have a different vaule for every row.
+> IS NOT NULL - must hava a value. 
+> DEFAULT - takes an additional argument that will be the assumed vaule for an inserted row.
+
+
+Notes - 
+Database data is usually structered in a way that makes the fata easily accessible.
+
+Relational Database allows to identify and access data in relation to another piece of data in the database. Often organized into tables.
+
+Rows, also called records.
+Colums have a specific data type.
+
+RDBMS use the SQL language to access the database.
+
+SQL syntax is similar to English, which makes it wasy to write, read, and interpret.
+
+Popular RDBMS
+-SQLite
+	-Popular for databases in cellphones, PDAs, MP3 players, set-top boxes, etc.
+	-Can store an entire database in a single file.
+	-Most signigicant advantage, it can be stored locally without connecting database to a server.
+-MySQL
+	-Most popular open source SQL database
+	-Typically used gor web application development.
+	-Often accessed using PHP.
+	-Main advantages: easy to use, inexpensive, reliable, and has a large community of developers.
+	-Disadvantages: poor performance, open source development has lagged since Oracle has taken control, and 	it does not include some advanced features.
+-PostgreSQL
+	-Open-source SQL database that is not controlled by any corporation.
+	-Typically used for web application development.
+	-Shares many of the advantages of MySQL.
+	-Provides additional features like foreign key support without requiring complex configuration.
+	-Disadvantages: slower performance, less popular.
+-Oracle DB
+	-Owned by Oracle Corp.
+	-Not open-source.
+	-For large application, particularly in banking.
+	-Used by world's top banks.
+	-Offers powerful combination of technology and comprehensive, pre-intergrated business applicaitions.
+	-Main disavantage: not free, quite expensive.
+-SQL Server
+	-Owned by Microsoft.
+	-Not open-source.
+	-Mostly used by large enterprise applications.
+
+Statments always end in a ";"
+
+CREATE TABLE is a clause. Clauses are written in capital letters. Also known as commands. 
+
+PRIMARY KEY columns can be used to uniquely identify the row. Attempts to insert a row with an identical value to a row already in the table will result in a constraint violation which will not allow you to insert the new row.
+
+UNIQUE columns have a different value for every row. This is similar to PRIMARY KEY except a table can have many different UNIQUE columns.
+
+NOT NULL columns must have a value. Attempts to insert a row without a value for a NOT NULL column will result in a constraint violation and the new row will not be inserted.
+
+DEFAULT columns take an additional argument that will be the assumed value for an inserted row if the new row does not specify a value for that column.
+
+Integet, Text, Date, Real are common data types.
+
+Example Code - 
+
+Create:
+ SELECT * FROM celebs;
+ 
+ CREATE TABLE	celebs (
+ 	id INTEGER,
+ 	name TEXT,
+ 	age INTEGER
+ );
+
+Insert: 
+	INSERT INTO celebs (id, name, age)
+	VALUES (1, 'Justin Bieber', 22);
+
+	INSERT INTO celebs (id, name, age)
+	VALUES (2, 'Beyonce Knowles', 33);
+
+	INSERT INTO celebs (id, name, age)
+	VALUES (3, 'Jermey Lin', 26);
+
+	INSERT INTO celebs (id, name, age)
+	VALUES (4, 'Taylor Swift', 26);
+
+Alter: 
+	ALTER TABLE celebs
+	ADD twitter_handle TEXT;
+
+	SELECT * FROM celebs;
+
+Update: 
+	UPDATE celebs
+ 	SET twitter_handle = '@taylorswift13'
+ 	WHERE id = 4;
+ 
+ 	SELECT * FROM celebs;
+
+Delete: 
+ DELETE FROM celebs
+ WHERE twitter_handle is NULL;
+ 
+ SELECT * FROM celebs;
+
+Contraints:
+  CREATE TABLE awards (
+ 	id INTEGER PRIMARY KEY, 
+  recipient TEXT NOT NULL,
+  award_name TEXT DEFAULT 'Grammy'
+  );
